@@ -97,10 +97,22 @@
   cursor: pointer;
   box-shadow: 0 4px 8px rgba(0,0,0,0.25);
   min-width: 0;
+  /* transition: background 180ms, transform 120ms, box-shadow 180ms; */
 }
 
 .btn:active { transform: translateY(1px); }
-.btn:focus { outline: 2px solid rgba(255,255,255,0.12); outline-offset: 2px; }
+/* hover */
+.button-row .btn:hover {
+  background: #54787d;
+  box-shadow: 0 6px 14px rgba(122,161,166,0.25);
+}
+
+/* keyboard focus (visible for accessibility) */
+.button-row .btn:focus,
+.button-row .btn:focus-visible {
+  box-shadow: 0 6px 14px rgba(122,161,166,0.25);
+  background: #54787d;
+}
 
 .content-box {
   position: fixed;
