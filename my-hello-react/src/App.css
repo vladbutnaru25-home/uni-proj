@@ -184,3 +184,48 @@
   font-size: 1rem;
   text-align: left;
 }
+
+/* social buttons in header bottom-right */
+.social-row {
+  position: absolute;
+  right: 1.5rem;
+  bottom: 12px;             /* sits inside header bottom area */
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  z-index: 1002;
+}
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 36px;
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  border-radius: 6px;
+  padding: 6px;
+  text-decoration: none;
+  transition: background 180ms, transform 120ms;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.social-btn svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
+.social-btn:hover {
+  background: #01333e;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(1, 51, 62, 0.35);
+  color: #fff;
+}
+
+.social-btn:focus {
+  outline: 2px solid #01333e;
+  outline-offset: 2px;
+  box-shadow: 0 6px 12px rgba(1, 51, 62, 0.25);
+}
