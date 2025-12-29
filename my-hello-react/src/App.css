@@ -53,14 +53,27 @@
   overflow: visible; /* allow logo to show outside header */
 }
 
-/* place logo so half is below the header */
 .header-logo {
   position: absolute;
-  left: 1.5rem;       /* adjust horizontal position as needed */
-  bottom: -70px;      /* how far the logo extends below header */
-  height: 8.5rem;     /* adjust size as needed */
+  left: 1.5rem;
+  bottom: -70px;
+  height: 8.5rem;
   padding: 0.5em;
+  transition: transform 200ms ease, filter 220ms ease;
   z-index: 1001;
+  background: transparent;
+  display: block;
+}
+
+.header-logo:hover,
+.header-logo:focus {
+  transform: translateY(-4px) scale(1.03);
+  /* multiple drop-shadows build a stronger glow applied only to visible pixels */
+  filter:
+    drop-shadow(0 6px 10px rgba(1,51,62,0.35))
+    drop-shadow(0 0 14px rgba(1,51,62,0.45))
+    drop-shadow(0 0 28px rgba(1,51,62,0.22));
+  outline: none;
 }
 
 .button-row {
