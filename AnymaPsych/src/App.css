@@ -1,22 +1,31 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
-  padding-top: 360px;
+  padding: 0rem;
+  padding-top: 2rem;
   text-align: left;
   position: relative;
+  min-height: auto;
 }
 
 .header h1 {
+  position: sticky;
   top: 5.5rem;
   font-size: 3.5rem;
   text-align: left;
-  /* overflow: hidden; */
+  /* padding: -2rem 1rem; 
+  padding-bottom: 2rem;  */
   text-overflow: ellipsis;
 }
 
 .header h2 {
-  position: absolute;
+  position: sticky;
   bottom: 5.5rem;    /* distance from header bottom */
   left: 1.5rem;       /* aligns with header padding */
   right: 15.5rem;
@@ -30,57 +39,51 @@
 }
 
 .header {
-  position: fixed;
+  position: sticky;
   top: 0;
-  left: 0;
-  right: 0;
+  z-index: 1000;
   max-width: 1080px;
-  height: 310px;
   margin: 0 auto;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background: linear-gradient(135deg, rgba(0, 77, 94, 0.4) 0%, rgba(20, 114, 133, 0.4) 100%), url('./assets/background_h1.png') center/cover;
+  background: linear-gradient(135deg, rgba(0,77,94,0.4) 0%, rgba(20,114,133,0.4) 100%), url('./assets/background_h1.png') center/cover;
   color: white;
   padding: 1.5rem 2rem;
-  padding-bottom: 1rem;
+  padding-bottom: 3.6rem; /* room for overlapping logo/buttons */
   border-radius: 0 0 8px 8px;
-  z-index: 1000;
   width: 100%;
   box-sizing: border-box;
-  overflow: visible; /* allow logo to show outside header */
+  overflow: visible;
 }
 
 .header-logo {
   position: absolute;
   left: 1.5rem;
-  bottom: -70px;
-  height: 8.5rem;
-  padding: 0.5em;
+  bottom: -44px;         /* pushes logo half below header */
+  height: 6.5rem;
+  padding: 0.25em;
   transition: transform 200ms ease, filter 220ms ease;
   z-index: 1001;
   background: transparent;
   display: block;
 }
 
+
 .header-logo:hover,
 .header-logo:focus {
   transform: translateY(-4px) scale(1.03);
-  /* multiple drop-shadows build a stronger glow applied only to visible pixels */
   filter:
     drop-shadow(0 6px 10px rgba(1,51,62,0.35))
-    drop-shadow(0 0 14px rgba(1,51,62,0.45))
-    drop-shadow(0 0 28px rgba(1,51,62,0.22));
+    drop-shadow(0 0 14px rgba(1,51,62,0.45));
   outline: none;
 }
 
 .button-row {
   position: absolute;
-  left: 10.5rem;        /* starts after logo (1.5rem + ~9rem logo width) */
-  right: 1.5rem;        /* ends at header right padding */
-  bottom: -50px;
+  left: calc(1.5rem + 6.5rem + 0.75rem); /* header padding + logo width + gap */
+  right: 1.5rem;
+  bottom: -52px; /* places buttons just below header edge */
   display: flex;
   gap: 0.5rem;
   z-index: 1001;
@@ -95,9 +98,9 @@
   font-size: 1rem;
   border-radius: 6px;
   cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.18);
   min-width: 0;
-  /* transition: background 180ms, transform 120ms, box-shadow 180ms; */
+  transition: background 180ms, transform 120ms, box-shadow 180ms;
 }
 
 .btn:active { transform: translateY(1px); }
@@ -115,26 +118,17 @@
 }
 
 .content-box {
-  position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
   width: 100%;
   max-width: 1080px;
-  margin-top: 0;
-  margin-bottom: 0;
-  margin-left: 0;
-  margin-right: 0;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  margin: 5.5rem auto 2rem; /* space so it sits below header/buttons */
+  padding: 2rem 1.5rem;
   background: #fff;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  top: 400px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   box-sizing: border-box;
-  z-index: 999;
+  z-index: 1;
 }
 
 .content-hero {
@@ -253,4 +247,87 @@
   outline: 2px solid #01333e;
   outline-offset: 2px;
   box-shadow: 0 6px 12px rgba(1, 51, 62, 0.25);
+}
+
+/* Small screens / phones */
+@media (max-width: 768px) {
+
+  #root { 
+    padding-top: 20px; 
+    position: relative;
+    min-height: auto;
+  }
+
+  .header {
+    padding: 1rem;
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  /* Put logo into normal flow and reduce size */
+  .header-logo {
+    position: relative;
+    height: 4.8rem;
+    bottom: 0;
+    margin-bottom: 0.25rem;
+  }
+
+  /* Anchor button row under the logo; allow wrap / horizontal scroll */
+  .button-row {
+    position: static;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    margin-top: 0.25rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: nowrap; 
+    overflow-x: auto;
+    align-items: center;
+    width: 100%;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .button-row .btn {
+    flex: 0 0 auto;
+    min-width: 120px;
+    padding: 0.6rem 0.9rem;
+    font-size: 0.95rem;
+  }
+
+  /* make social icons smaller and sit in header top-right */
+  .social-row {
+    position: absolute;
+    right: 0.75rem;
+    top: 0.75rem;
+    bottom: auto;
+  }
+
+  /* content flows below header naturally on mobile */
+  .content-box {
+    position: relative;
+    left: auto;
+    transform: none;
+    width: calc(100% - 2rem);
+    max-width: 1080px;
+    margin: 0.75rem auto 2rem;
+    top: auto;
+    padding: 1.25rem;
+  }
+
+  /* reduce hero sizes */
+  .content-hero h1 { font-size: 1.4rem; }
+  .content-hero h2 { font-size: 1rem; }
+  .content-hero p { font-size: 0.95rem; }
+}
+
+/* Very small phones */
+@media (max-width: 420px) {
+  #root { padding-top: 20px; }
+
+  .button-row .btn { flex-basis: 100%; min-width: 0; }
+  .header-logo { height: 4rem; }
+  .content-box { padding: 1rem; width: calc(100% - 1.5rem); }
+  .content-hero h1 { font-size: 1.2rem; }
 }

@@ -117,18 +117,6 @@ function App() {
           ))}
         </nav>
 
-        <nav className="button-row" aria-label="main actions">
-          {tabs.map(tab => (
-            <button
-              key={tab.key}
-              className={`btn ${activeTab === tab.key ? 'active' : ''}`}
-              onClick={() => setActiveTab(tab.key)}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </nav>
-
         {/* social buttons bottom-right of header */}
         <div className="social-row" aria-hidden="false" aria-label="social links">
           <a className="social-btn" href="https://www.facebook.com/profile.php?id=61585400849025" aria-label="Facebook" tabIndex="0">
